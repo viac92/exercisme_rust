@@ -18,7 +18,6 @@ pub fn production_rate_per_hour(speed: u8) -> f64 {
     } else {
         returns = speed * 221.0 * 0.90;
     }
-
     returns
 }
 
