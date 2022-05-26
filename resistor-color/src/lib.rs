@@ -18,32 +18,16 @@ pub enum ResistorColor {
 }
 
 pub fn color_to_value(_color: ResistorColor) -> usize {
-    int_enum::IntEnum::int_value(_color)
+    _color as usize
 }
 
 pub fn value_to_color_string(value: usize) -> String {
-    match value {
-        0 => "Black".to_string(),
-        1 => "Brown".to_string(),
-        2 => "Red".to_string(),
-        3 => "Orange".to_string(),
-        4 => "Yellow".to_string(),
-        5 => "Green".to_string(),
-        6 => "Blue".to_string(),
-        7 => "Violet".to_string(),
-        8 => "Grey".to_string(),
-        9 => "White".to_string(),
-        _ => "value out of range".to_string(),
+    match ResistorColor::from_int(value) {
+        Ok(resistor) => format!("{:?}", resistor),
+        Err(_) => "value out of  range".to_string(),
     }
 }
 
 pub fn colors() -> Vec<ResistorColor> {
-    let iter = ResistorColor::into_enum_iter();
-    let mut result: Vec<ResistorColor> = [].to_vec();
-
-    for item in iter {
-        result.push(item);
-    }
-
-    result
+    ResistorColor::into_enum_iter().collect()
 }
